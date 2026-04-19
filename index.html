@@ -48,12 +48,26 @@
         "reviewCount": "53"
       },
       "description": "Cash for cars Perth – up to $9,999 instant cash and free car removal. Same-day pickup across all Perth suburbs. Licensed and eco-certified.",
-      "openingHoursSpecification": {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
-        "opens": "07:00",
-        "closes": "19:00"
-      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+          "opens": "07:00",
+          "closes": "17:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Saturday"],
+          "opens": "07:00",
+          "closes": "14:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Sunday"],
+          "opens": "08:00",
+          "closes": "14:00"
+        }
+      ],
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "5 Burns Rd",
@@ -172,10 +186,6 @@
                 <i data-lucide="phone"></i>
                 Call Now — 0470 237 629
             </a>
-            <a href="#quote" class="btn btn-outline btn-lg">
-                <i data-lucide="arrow-right"></i>
-                Get a Quote
-            </a>
         </div>
 
         <div class="hero-trust">
@@ -202,20 +212,6 @@
         </div>
     </div>
 </section>
-
-<!-- CALL STRIP -->
-<div class="call-strip">
-    <div class="call-strip-inner">
-        <div class="call-strip-text">
-            Speak to a local Perth expert right now
-            <small>Mon–Sun · 7am–7pm · Fast response</small>
-        </div>
-        <a href="tel:0470237629" class="call-strip-btn">
-            <i data-lucide="phone"></i>
-            Call 0470 237 629
-        </a>
-    </div>
-</div>
 
 <!-- TICKER -->
 <div class="ticker" aria-hidden="true">
@@ -276,12 +272,6 @@
                 <i data-lucide="clock"></i>
                 Under 60 minutes start to finish &nbsp;&middot;&nbsp; We handle all paperwork &nbsp;&middot;&nbsp; 7 days a week
             </div>
-        </div>
-        <div style="text-align:center;margin-top:32px" class="reveal">
-            <a href="tel:0470237629" class="btn btn-accent btn-lg">
-                <i data-lucide="phone"></i>
-                Call Now — 0470 237 629
-            </a>
         </div>
     </div>
 </section>
@@ -476,12 +466,6 @@
             </div>
         </div>
 
-        <div style="text-align:center;margin-top:36px" class="reveal">
-            <a href="tel:0470237629" class="btn btn-accent btn-lg">
-                <i data-lucide="phone"></i>
-                Call Now — 0470 237 629
-            </a>
-        </div>
     </div>
 </section>
 
@@ -552,7 +536,7 @@
                     <div class="phone-cta-icon"><i data-lucide="phone"></i></div>
                     <div>
                         <strong class="phone-cta-strong">Call — 0470 237 629</strong>
-                        <span class="phone-cta-sub">Mon–Sun &middot; 7am–7pm &middot; Instant cash offer</span>
+                        <span class="phone-cta-sub">Mon–Fri 7am–5pm &middot; Sat 7am–2pm &middot; Sun 8am–2pm</span>
                     </div>
                 </a>
 
@@ -757,14 +741,6 @@
         <p class="footer-copy">&copy; 2025 Speed Wreckers. Cash for cars Perth &mdash; free car removal Perth &mdash; licensed car buyers WA. &nbsp;&middot;&nbsp; ABN: 34&nbsp;644&nbsp;789&nbsp;122</p>
     </div>
 </footer>
-
-<!-- STICKY MOBILE CTA -->
-<div class="mobile-sticky">
-    <a href="tel:0470237629" aria-label="Call Speed Wreckers now on 0470 237 629">
-        <i data-lucide="phone"></i>
-        Call Now — 0470 237 629
-    </a>
-</div>
 
 <script>
     // Init Lucide icons
