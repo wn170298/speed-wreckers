@@ -226,6 +226,9 @@
                 <div class="form-box">
                     <span class="form-title">Callback Request</span>
                     <form id="contactForm" onsubmit="submitContact(event)" novalidate>
+                        <input type="hidden" name="access_key" value="5ffcdb38-8e91-4bb8-ba02-d638383412f5">
+                        <input type="hidden" name="subject" value="Callback Request – Speed Wreckers">
+                        <input type="hidden" name="from_name" value="Speed Wreckers Website">
                         <div class="form-group">
                             <label class="form-label" for="name">Your Name</label>
                             <input class="form-input" type="text" id="name" name="name" placeholder="e.g. John Smith" required autocomplete="name">
@@ -260,6 +263,9 @@
                     </form>
                     <div class="form-success" id="formSuccess">
                         We'll call you within 15 minutes.
+                    </div>
+                    <div class="form-error" id="formError" style="display:none;color:#ff5f5f;font-size:14px;margin-top:12px;text-align:center">
+                        Something went wrong. Please try again or <a href="tel:0470237629" style="color:#ff5f5f">call us directly</a>.
                     </div>
                     <p class="form-microcopy">
                         Prefer to call? <a href="tel:0470237629">Ring us on 0470 237 629</a>
@@ -350,10 +356,34 @@
     }, { threshold: 0.08, rootMargin: '0px 0px -24px 0px' });
     document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
 
-    function submitContact(e) {
+    async function submitContact(e) {
         e.preventDefault();
-        document.getElementById('contactForm').style.display = 'none';
-        document.getElementById('formSuccess').style.display = 'block';
+        const form = document.getElementById('contactForm');
+        const btn = form.querySelector('button[type="submit"]');
+        const successEl = document.getElementById('formSuccess');
+        const errorEl = document.getElementById('formError');
+
+        btn.disabled = true;
+        btn.textContent = 'Sending…';
+
+        const data = new FormData(form);
+        data.append('replyto', 'aliullahnoori2019@gmail.com');
+
+        try {
+            const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: data });
+            const json = await res.json();
+            if (json.success) {
+                form.style.display = 'none';
+                successEl.style.display = 'block';
+            } else {
+                throw new Error(json.message);
+            }
+        } catch {
+            btn.disabled = false;
+            btn.innerHTML = 'Request Callback <i data-lucide="arrow-right"></i>';
+            if (typeof lucide !== 'undefined') lucide.createIcons();
+            errorEl.style.display = 'block';
+        }
     }
 </script>
 </body>
