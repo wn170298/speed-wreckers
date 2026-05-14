@@ -27,6 +27,7 @@
     <link rel="preconnect" href="https://www.googletagmanager.com">
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Outfit:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Outfit:wght@400;500;600;700&display=swap"></noscript>
+    <link rel="preload" as="image" href="compressed/2025-02-27.webp" fetchpriority="high">
     <link rel="stylesheet" href="styles.css">
 
     <script type="application/ld+json">
@@ -128,7 +129,8 @@
 </div>
 
 <!-- PAGE HERO -->
-<div class="page-hero" style="background-image:url('compressed/2025-02-27.webp')">
+<div class="page-hero">
+    <img class="hero-bg" src="compressed/2025-02-27.webp" alt="" fetchpriority="high" loading="eager" decoding="sync" width="1200" height="900">
     <div class="page-hero-inner">
         <nav class="breadcrumb" aria-label="Breadcrumb">
             <a href="index.html">Home</a>
