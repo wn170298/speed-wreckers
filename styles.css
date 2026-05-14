@@ -759,9 +759,20 @@ footer {
     .call-strip-inner { flex-direction: column; text-align: center; }
     .stats-bar .stat { min-width: 44%; }
     .hero-trust { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    /* Remove compositor layer promotion on mobile — saves GPU memory */
+    .ticker-track { will-change: auto; }
 }
 
 @media (max-width: 580px) {
+    /* Simpler gradient: fewer stops + vertical direction = faster GPU paint */
+    .hero-overlay {
+        background: linear-gradient(
+            180deg,
+            rgba(12,12,12,0.18) 0%,
+            rgba(12,12,12,0.72) 45%,
+            rgba(12,12,12,0.97) 100%
+        );
+    }
     .sec { padding: 52px 16px; }
     .page-hero { padding: 120px 16px 52px; }
     .hero-content { padding: 44px 16px 72px; }

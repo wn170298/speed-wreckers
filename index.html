@@ -156,8 +156,8 @@
         <div class="hero-slide active">
             <img src="compressed/2024-09-01.webp" srcset="compressed/2024-09-01-800.webp 800w, compressed/2024-09-01.webp 1200w" sizes="100vw" alt="" fetchpriority="high" loading="eager" width="1200" height="900">
         </div>
-        <div class="hero-slide" style="background-image:url('compressed/2024-08-17.webp')" data-src="compressed/2024-08-17.webp"></div>
-        <div class="hero-slide" style="background-image:url('compressed/2025-02-27.webp')" data-src="compressed/2025-02-27.webp"></div>
+        <div class="hero-slide" data-src="compressed/2024-08-17.webp"></div>
+        <div class="hero-slide" data-src="compressed/2025-02-27.webp"></div>
     </div>
     <div class="hero-overlay" aria-hidden="true"></div>
 
@@ -747,7 +747,7 @@
             <a href="faq.html">FAQ</a>
             <a href="contact.html">Contact</a>
         </nav>
-        <p class="footer-copy">&copy; 2025 Speed Wreckers. Cash for cars Perth &mdash; free car removal Perth &mdash; licensed car buyers WA. &nbsp;&middot;&nbsp; ABN: 34&nbsp;644&nbsp;789&nbsp;122</p>
+        <p class="footer-copy">&copy; 2026 Speed Wreckers. Cash for cars Perth &mdash; free car removal Perth &mdash; licensed car buyers WA. &nbsp;&middot;&nbsp; ABN: 34&nbsp;644&nbsp;789&nbsp;122</p>
     </div>
 </footer>
 
@@ -790,11 +790,25 @@
         slides[cur].classList.remove('active');
         dots[cur].classList.remove('active');
         cur = i;
+        const slide = slides[cur];
+        if (slide.dataset.src && !slide.style.backgroundImage) {
+            slide.style.backgroundImage = `url('${slide.dataset.src}')`;
+        }
         slides[cur].classList.add('active');
         dots[cur].classList.add('active');
     }
     function nextSlide() { goSlide((cur + 1) % slides.length); }
     timer = setInterval(nextSlide, 5500);
+    // Preload remaining slide images after first interaction settles
+    window.addEventListener('load', function() {
+        setTimeout(function() {
+            slides.forEach(function(s) {
+                if (s.dataset.src && !s.style.backgroundImage) {
+                    var img = new Image(); img.src = s.dataset.src;
+                }
+            });
+        }, 3000);
+    }, {once: true});
     dots.forEach((d, i) => d.addEventListener('click', () => {
         clearInterval(timer);
         goSlide(i);
@@ -848,12 +862,8 @@
     }
 </script>
 
-<!-- Google Tag Manager (deferred) -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-NGTRM9PC');</script>
+<!-- Google Tag Manager (interaction-deferred) -->
+<script>(function(){var loaded=false;function loadGTM(){if(loaded)return;loaded=true;(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-NGTRM9PC');}['click','touchstart','keydown','scroll'].forEach(function(e){window.addEventListener(e,loadGTM,{once:true,passive:true});});setTimeout(loadGTM,5000);})();</script>
 <!-- End Google Tag Manager -->
 <script>window.addEventListener('load',function(){var s=document.createElement('script');s.src='https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js';s.onload=function(){lucide.createIcons()};document.body.appendChild(s)},{once:true});</script>
 </body>
